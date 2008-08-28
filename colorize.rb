@@ -1,5 +1,5 @@
-# load lib
-require 'lib/Colorize.rb'
+# load lib files
+require "lib/Colorize.rb"
 
 
 
