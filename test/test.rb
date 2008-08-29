@@ -2,7 +2,7 @@
 require "Colorize"
 
 class Klass
-  include Colorize
+  include Colors
   def initialize
     system("echo #{red("hola")} This is a #{blue("test")}")
     system("echo #{red on_white("Hola1")}")
@@ -12,6 +12,23 @@ end
 
 Klass.new
 
-system("echo #{Colorize.white("hola3")} This is a #{Colorize.blue("test")}")
-system("echo #{Colorize.red Colorize.on_white("Hola4")}")
-puts "#{Colorize.yellow Colorize.on_white("Hola5")}"
+html = "<html>
+<body>
+<dl>
+  <dt>the first term</dt>
+  <dd>its definition</dd>
+
+  <dt>the second term</dt>
+  <dd>its definition</dd>
+
+  <dt>the third term</dt>
+  <dd>\"its definition\"</dd>
+  <img src=\"test.html\">
+</dl>
+</body>
+</html>"
+     
+c = Colorize.new( :red => /<.*html>|<.*body>/, 
+                  :blue => /".*"/,
+                  :cyan => /src/)
+puts c.paint(html)

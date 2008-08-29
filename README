@@ -4,3 +4,55 @@ under GPL 3.0 licence :)
 Cheers 
 
 FreedomCoder
+
+
+DOCS :
+
+	Colors:
+			:bold       
+            :underline  
+            :blink      
+            :reverse    
+            :concealed  
+            :black      
+            :red        
+            :green      
+            :yellow     
+            :blue       
+            :magenta    
+            :cyan       
+            :white      
+            :on_black   
+            :on_red     
+            :on_green   
+            :on_yellow  
+            :on_blue    
+            :on_magenta 
+            :on_cyan    
+            :on_white   
+
+
+test.rb 
+
+
+html = "<html>
+<body>
+<dl>
+  <dt>the first term</dt>
+  <dd>its definition</dd>
+
+  <dt>the second term</dt>
+  <dd>its definition</dd>
+
+  <dt>the third term</dt>
+  <dd>\"its definition\"</dd>
+  <img src=\"test.html\">
+</dl>
+</body>
+</html>"
+     
+c = Colorize.new( :red => /<.*html>|<.*body>/, 
+                  :blue => /".*"/,
+                  :cyan => /src/)
+puts c.paint(html)
+
