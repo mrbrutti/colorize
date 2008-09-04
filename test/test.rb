@@ -32,3 +32,19 @@ c = Colorize.new( :red => /<.*html>|<.*body>/,
                   :blue => /".*"/,
                   :cyan => /src/)
 puts c.paint(html)
+
+apachelog = "1.2.3.4 -- \"This is not\" - \"No way\".
+4.3.2.1 -- \"This3 34 is not\" - \"No way 34343\".
+4.3.2.1 -- \"This3 34 is not\" - \"No way 34343\"."
+reg = /(.*) -- \"(.*)\" - \"(.*)\"\./
+
+Colorize.bpaint apachelog, reg do |m|
+  puts Colors.red(m[0]) + 
+       " -- \"" +
+       Colors.blue(m[1]) +
+       "\" - \"" +
+       Colors.white(m[2]) +
+       "\"."
+end
+
+puts apachelog
