@@ -48,9 +48,11 @@ class Colorize
   end
   
   def self.bpaint(text, reg, &block)
+    @output = ""
     text.scan reg do |match|
-      block.call(match)
+      @output << block.call(match)
     end
+    @output
   end
 
 end
