@@ -20,7 +20,7 @@ module Colors
               :on_magenta =>  "\033[45m",
               :on_cyan    =>  "\033[46m",
               :on_white   =>  "\033[47m" }
-  
+
   @STYLES.each do |method,value| 
     class_eval "def #{method}(text)
     text=\"#{value}\#\{text\}\\033\[0m\";end"
@@ -42,17 +42,16 @@ class Colorize
     @text ||= text
     @palette.each do |color, pattern|
       @text.gsub! pattern do |match| 
-        eval "#{color}(match)" end
+        eval "Colors.#{color}(match)" end
     end
     @text
   end
   
-  def self.bpaint(text, reg, &block)
+  def self.block_paint(text, reg, &block)
     @output = ""
     text.scan reg do |match|
       @output << block.call(match)
     end
     @output
   end
-
 end

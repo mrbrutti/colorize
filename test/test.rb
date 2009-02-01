@@ -1,5 +1,5 @@
 # Simple tests
-require "Colorize"
+require "../lib/colorize.rb"
 
 class Klass
   include Colors
@@ -27,7 +27,7 @@ html = "<html>
 </dl>
 </body>
 </html>"
-     
+
 c = Colorize.new( :red => /<.*html>|<.*body>/, 
                   :blue => /".*"/,
                   :cyan => /src/)
@@ -38,8 +38,13 @@ apachelog = "1.2.3.4 -- \"This is not\" - \"No way\".
 4.3.2.1 -- \"This3 34 is not\" - \"No way 34343\"."
 reg = /(.*) -- \"(.*)\" - \"(.*)\"\./
 
-apachelog = Colorize.bpaint apachelog, reg do |m|
-  Colors.red(m[0]) + " -- \"" + Colors.blue(m[1]) + "\" - \"" + Colors.white(m[2]) + "\".\n"
+apachelog = Colorize.block_paint apachelog, reg do |m|
+  Colors.red(m[0]) + 
+  " -- \"" + 
+  Colors.blue(m[1]) + 
+  "\" - \"" + 
+  Colors.white(m[2]) + 
+  "\".\n"
 end
 
 puts apachelog
